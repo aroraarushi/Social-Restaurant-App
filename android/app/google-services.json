@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "807314155423",
+    "project_id": "socialrestaurantapp-b9a68",
+    "storage_bucket": "socialrestaurantapp-b9a68.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807314155423:android:c6d5d3bf8efd70d90effaa",
+        "android_client_info": {
+          "package_name": "com.socialrestaurantapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807314155423-a19hmgee1blh3mkn9dusljmm4tv0g3qe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.socialrestaurantapp",
+            "certificate_hash": "943edeb9b419d040d289eee504005e3bee6c4c19"
+          }
+        },
+        {
+          "client_id": "807314155423-74c6mt7kpc3hgbdu8j3b69plhfnvpvrf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNnGsBQPOUBOLkei-gF5rOup9s0_2CuO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807314155423-74c6mt7kpc3hgbdu8j3b69plhfnvpvrf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
