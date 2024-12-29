@@ -7,11 +7,12 @@ import SeperatorText from "../components/SeperatorText";
 import { useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
+import { useSelector } from "react-redux";
 
 
 
 const LoginScene = () =>{
+    const { colors } = useSelector((state) => state.theme); 
 
     const navigation = useNavigation();
 
@@ -57,70 +58,79 @@ const LoginScene = () =>{
         }
     }
 
+    const styles = createStyles(colors);
+
     return(
-        <View style={styles.container}>
-            <Image 
-            source={require('../assets/loginimage.jpg')}
-            style={styles.image} />
-            <ScrollView contentContainerStyle={{paddingBottom:50}} >
+        <View style={styles.outerContainer}>
 
-            <View style={{marginTop:30}}>
-                <Text style={styles.title}>Log in</Text>
+            <View style={styles.container}>
+                <Image 
+                source={require('../assets/loginimage.jpg')}
+                style={styles.image} />
+                <ScrollView contentContainerStyle={{paddingBottom:50}} >
 
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Enter your email"
-                    value={email}
-                    onChangeText={(value)=>setEmail(value)} />
-                
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChangeText={(value)=>setPassword(value)}
-                    secureTextEntry={true} />
-                
-                <Text style={styles.subTitle}>{message}</Text>
+                <View style={{marginTop:30}}>
+                    <Text style={styles.title}>Log in</Text>
 
-                <Button 
-                    title="Log in"
-                    style={styles.loginButton}
-                    textStyle={styles.loginButtonText}
-                    onPress={()=>handleLogin()} />
-                <View style={{marginTop:20}}>
-                    <SeperatorText title=" or " />
-                </View>
-                <View style={{flexDirection:'row',justifyContent: 'space-between',marginTop:20 }}>
-                    <Button 
-                        title="Google"
-                        style={[styles.button,{width:'48%'}]}
-                        textStyle={styles.buttonText}
-                        onPress={()=>signInWithGoogle()} />
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder="Enter your email"
+                        value={email}
+                        onChangeText={(value)=>setEmail(value)} />
                     
-                    <Button 
-                        title="Facebook"
-                        style={[styles.button,{width:'48%'}]}
-                        textStyle={styles.buttonText}
-                        onPress={()=>{}} />
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder="Enter your password"
+                        value={password}
+                        onChangeText={(value)=>setPassword(value)}
+                        secureTextEntry={true} />
                     
-                </View>
-                <View style={{marginTop:20}}>
+                    <Text style={styles.subTitle}>{message}</Text>
                     <Button 
-                        title="New here? Sign up"
-                        style={styles.button}
-                        textStyle={styles.buttonText}
-                        onPress={()=>(navigation.navigate('SignupScene'))} />
+                        title="Log in"
+                        style={styles.loginButton}
+                        textStyle={styles.loginButtonText}
+                        onPress={()=>handleLogin()} />
+                    <View style={{marginTop:20}}>
+                        <SeperatorText title=" or " />
+                    </View>
+                    <View style={{flexDirection:'row',justifyContent: 'space-between',marginTop:20 }}>
+                        <Button 
+                            title="Google"
+                            style={[styles.button,{width:'48%'}]}
+                            textStyle={styles.buttonText}
+                            onPress={()=>signInWithGoogle()} />
+                        
+                        <Button 
+                            title="Facebook"
+                            style={[styles.button,{width:'48%'}]}
+                            textStyle={styles.buttonText}
+                            onPress={()=>{}} />
+                        
+                    </View>
+                    <View style={{marginTop:20}}>
+                        <Button 
+                            title="New here? Sign up"
+                            style={styles.button}
+                            textStyle={styles.buttonText}
+                            onPress={()=>(navigation.navigate('SignupScene'))} />
+                    </View>
                 </View>
+                </ScrollView>
             </View>
-            </ScrollView>
+            
         </View>
     )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
       flex: 1,
       marginHorizontal:16
+    },
+    outerContainer:{
+        flex:1,
+        backgroundColor: colors.background,
     },
     image: {
       marginTop:15,
@@ -130,7 +140,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:24,
-        color:'black',
+        color: colors.text,
         fontWeight:'bold'
     },
     subTitle:{
@@ -139,18 +149,19 @@ const styles = StyleSheet.create({
         paddingBottom:10
 
     },
-    inputStyle:{
-        backgroundColor:'white',
+    inputStyle: {
+        backgroundColor: 'white',
         paddingHorizontal: 10,
         borderRadius: 22,
         shadowColor: 'grey',
         shadowOffset: { width: 5, height: 5 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
-        elevation:5,
-        marginTop:10,
-       
+        elevation: 5,
+        marginTop: 10,
+        color:'black'
     },
+    
     button:{
         backgroundColor:'white',
         paddingVertical: 15,

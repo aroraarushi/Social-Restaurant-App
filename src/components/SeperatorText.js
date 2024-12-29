@@ -1,7 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
 const SeperatorText =({title})=>{
+    const { colors } = useSelector((state) => state.theme); 
+    const styles = createStyles(colors);
+
     return(
         <View style={{flexDirection:'row'}}>
             <View style={styles.seperator} />
@@ -11,9 +15,9 @@ const SeperatorText =({title})=>{
     )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     seperatorText: {
-      color: 'black',
+        color: colors.text,
       fontSize: 14,
     },
     seperator:{

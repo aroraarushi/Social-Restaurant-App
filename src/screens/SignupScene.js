@@ -6,9 +6,11 @@ import auth from '@react-native-firebase/auth';
 import SeperatorText from "../components/SeperatorText";
 import { useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 
 const SignupScene = () =>{
+    const { colors } = useSelector((state) => state.theme); 
 
     const navigation = useNavigation();
 
@@ -33,45 +35,57 @@ const SignupScene = () =>{
         }
     }
 
+    const styles = createStyles(colors);
+
     return(
-        <View style={styles.container}>
+        <View style={styles.outerContainer}>
 
-            <View style={{marginTop:30}}>
-                <Text style={styles.title}>Sign up</Text>
+            <View style={styles.container}>
 
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Enter your email"
-                    value={email}
-                    onChangeText={(value)=>setEmail(value)} />
+                <View style={{marginTop:30}}>
+                    <Text style={styles.title}>Sign up</Text>
+
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholderTextColor="grey"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChangeText={(value)=>setEmail(value)} />
+                    
+                    <TextInput
+                        style={styles.inputStyle}
+                         placeholderTextColor="grey"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChangeText={(value)=>setPassword(value)}
+                        secureTextEntry={true} />
+                    
+                    <Text style={styles.subTitle}>{message}</Text>
+
+                    <Button 
+                        title="Sign up"
+                        style={styles.loginButton}
+                        textStyle={styles.loginButtonText}
+                        onPress={()=>handleSignup()} />
+
                 
-                <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChangeText={(value)=>setPassword(value)}
-                    secureTextEntry={true} />
-                
-                <Text style={styles.subTitle}>{message}</Text>
-
-                <Button 
-                    title="Sign up"
-                    style={styles.loginButton}
-                    textStyle={styles.loginButtonText}
-                    onPress={()=>handleSignup()} />
-
-               
-                
+                    
+                </View>
             </View>
-           
         </View>
     )
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors) =>
+    StyleSheet.create({
     container: {
       flex: 1,
-      marginHorizontal:16
+      marginHorizontal:16,
+      
+    },
+    outerContainer:{
+        flex:1,
+        backgroundColor: colors.background,
     },
     image: {
       marginTop:15,
@@ -81,7 +95,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:24,
-        color:'black',
+        color: colors.text,
         fontWeight:'bold'
     },
     subTitle:{
@@ -101,24 +115,6 @@ const styles = StyleSheet.create({
         elevation:5,
         marginTop:10,
        
-    },
-    button:{
-        backgroundColor:'white',
-        paddingVertical: 15,
-        paddingHorizontal: 20,
-        borderRadius: 22,
-        alignItems: 'center',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation:5,
-        width:'100%',
-    },
-    buttonText:{
-        color: 'grey',
-        fontSize: 16,
-        fontWeight:'bold',
     },
     loginButton:{
         backgroundColor:'#318CE7',
